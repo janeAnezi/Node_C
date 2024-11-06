@@ -49,6 +49,29 @@ the exports keyword makes the properties and method available outside the module
 this allows nodejs to transfere data over the hyperTextTransferProtocol
 to include we use :   require('http') 
 
+# Nodejs as a web server 
+The http module can create an http server that listens to server ports and gives a response back to the client
+
+You use the createServer() method to create an http server
+
+Ex: 
+var http = require('http')
+
+http.createServer(function(req, res) { // create a server object
+    res.write('Hello world') // write a response to the client
+    res.end(); // end the response
+    
+}).listen(4000) // the server object listens on port 4000
+
+
+the function passed in to the http.createServer() wil be executed when someone tries to access the computer on port 4000
+
+# HTTP Header 
+If the response fro the http server is supposed to be displayed as HTML. you should include an HTTP header with the correct content type
+
+res.writeHead(200, {'Content-Type': 'text/html'})
+
+
 
 
 
