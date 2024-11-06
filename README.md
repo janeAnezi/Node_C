@@ -16,4 +16,18 @@
 
  # Built-in Modules
     Nodejs has a set of built in modules which you can use with out any further installation
+    Some of the built in modules are: 
+    assert: Provides a set of assertion tests
+    buffer: Handle binary data.
+    child_process: Runs child process
+    cluster: split a single node process into multiple process
+    fs: to handle file system
+    http: make nodejs act as an http server to handle http request,
+    https: make nodejs act as an https server to handle https request
+    net: create servers and client
+    path: to handle file path
+    
+
+
+    
 
