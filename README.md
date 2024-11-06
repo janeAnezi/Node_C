@@ -71,6 +71,38 @@ If the response fro the http server is supposed to be displayed as HTML. you sho
 
 res.writeHead(200, {'Content-Type': 'text/html'})
 
+#  File System in Nodejs
+The file system module in Nodejs is used to interact with the file system of the computer. 
+To include the File System module, use the 'require()' method.
+ Eg 
+ var fs = require('fs')
+
+The Common use for the File System module are: 
+
+Read files
+Create files
+Update files
+Delete files
+Rename files
+
+#**** Read Files
+The fs.readFile() method is used to read files on your computer.
+Eg 
+
+var http = require('http');
+var fs = require('fs');
+http.createServer(function (req, res) {
+ 
+  fs.readFile('home.html', function(err, data) {      //Open a file on the server and return its content:
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write(data);
+    return res.end();
+  });
+  
+}).listen(8080);
+
+where home.html is an external file
+
 
 
 
