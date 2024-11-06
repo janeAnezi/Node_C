@@ -29,6 +29,10 @@
     os: provides info about os
     stream: handle streaming data
 
+# Add Modules
+To include modules in your application, you can use the require() function with the name of the modile
+eg  var http = require('http')
+
 
 
     
