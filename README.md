@@ -36,11 +36,13 @@ this gives the application access to http module.
 
 # creating a Module
 A module is a file that exports a function or a set of functions that can be used by other files or modules
-eg  exports.myDateTime = function () {
+eg
+create a file and write ....
+  exports.myDateTime = function () {
     return new Date().toString();
 }
 
-the exports keyword
+the exports keyword makes the properties and method available outside the module file
 
 
 
