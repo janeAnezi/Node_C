@@ -26,7 +26,9 @@
     https: make nodejs act as an https server to handle https request
     net: create servers and client
     path: to handle file path
-    
+    os: provides info about os
+    stream: handle streaming data
+
 
 
     
