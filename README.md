@@ -31,7 +31,17 @@
 
 # Add Modules
 To include modules in your application, you can use the require() function with the name of the modile
-eg  var http = require('http')
+eg  var http = require('http') 
+this gives the application access to http module.
+
+# creating a Module
+A module is a file that exports a function or a set of functions that can be used by other files or modules
+eg  exports.myDateTime = function () {
+    return new Date().toString();
+}
+
+the exports keyword
+
 
 
 
