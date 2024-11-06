@@ -43,7 +43,12 @@ create a file and write .... lets say you want to creat a time and date module
     return new Date().toString();
 }
 
-the exports keyword makes the properties and method available outside the module file
+the exports keyword makes the properties and method available outside the module file.
+
+# The Built-in HTTP Module
+this allows nodejs to transfere data over the hyperTextTransferProtocol
+to include we use :   require('http') 
+
 
 
 
