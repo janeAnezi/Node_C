@@ -91,4 +91,7 @@ const url = require('url')
 const address = 'https://www.google.com/search?q=cook&oq=cook&gs_lcrp=EgZjaHJvbWUyDAgAEEUYORixAxiABDIKCAEQLhixAxiABDIKCAIQABixAxiABDIHCAMQABiABDIWCAQQLhiDARjHARixAxjRAxiABBiKBTIHCAUQABiABDIKCAYQABixAxiABDIKCAcQLhixAxiABDIHCAgQLhiABDIHCAkQABiPAtIBCDE0NzhqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8'
 
 const addr = url.parse(address, true);
-console.log(addr);
+console.log(addr.hostname);
+console.log(addr.protocol);
+console.log(addr.auth);
+console.log(addr.href);
