@@ -296,6 +296,53 @@ In the example below we have created a function that will be executed when a "sc
 
 To fire an event, use the emit() method.
 
+var events = require('events');
+var eventEmitter = new events.EventEmitter();
+
+//Create an event handler:
+var myEventHandler = function () {
+  console.log('I hear a scream!');
+}
+
+//Assign the event handler to an event:
+eventEmitter.on('scream', myEventHandler);
+
+//Fire the 'scream' event:
+eventEmitter.emit('scream');
+
+# ***** Node.js Upload Files *****
+You can upload files to a server using Node.js. Below is an example of how to do it.
+
+*** There is a very good module for working with file uploads, called "Formidable".
+
+The Formidable module can be downloaded and installed using NPM.
+
+*** npm install formidable ***
+const formidable = require('formidable');
+
+Now we are ready to make a web page in Node.js that lets the user upload files to your computer:
+
+Step 1: Create an Upload Form
+Create a Node.js file that writes an HTML form, with an upload field:
+
+*** produce an HTML form ***
+var http = require('http');
+
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/html'});
+  res.write('<form action="fileupload" method="post" enctype="multipart/form-data">');
+  res.write('<input type="file" name="filetoupload"><br>');
+  res.write('<input type="submit">');
+  res.write('</form>');
+  return res.end();
+}).listen(8080);
+
+*** parse the uploaded file ***
+we will have to include the Formidable module to be able to parse the uploaded file once it reaches the server.
+
+When the file is uploaded and parsed, it gets placed on a temporary folder on your computer
+
+
 
 
 
