@@ -396,6 +396,52 @@ http.createServer(function (req, res) {
   }
 }).listen(8080);
 
+# **** NodeJS Send Mail *****
+To send an email using Node.js, you can use the Nodemailer module. 
+The Nodemailer module makes it easy to send emails from your computer.
+
+The Nodemailer module can be downloaded and installed using npm:
+*** npm install nodemailer ***
+
+After you have downloaded the Nodemailer module, you can include the module in any application
+
+var nodemailer = require('nodemailer');
+
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'youremail@gmail.com',
+    pass: 'yourpassword'
+  }
+});
+
+var mailOptions = {
+  from: 'youremail@gmail.com',
+  to: 'myfriend@yahoo.com',
+  subject: 'Sending Email using Node.js',
+  text: 'That was easy!'
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
+
+To send HTML formatted text in your email, use the "html" property instead of the "text" property:
+
+
+var mailOptions = {
+  from: 'youremail@gmail.com',
+  to: 'myfriend@yahoo.com',
+  subject: 'Sending Email using Node.js',
+  html: '<h1>Welcome</h1><p>That was easy!</p>'
+}
+
 
 
 
