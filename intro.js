@@ -39,17 +39,17 @@
 
 // ******* Creating Files from the server *********
 
-const fs = require('fs');
+//const fs = require('fs');
 
 // fs.appendFile('./news.txt', 'This is the highlight of the day', (err)=> {
 //     if (err) throw err;
 //     console.log('Content created!');
 // })
 
-fs.open('./newJist.txt', 'w', (err, file)=>{
-    if (err) throw err;
-    console.log('Opened!');
-})
+// fs.open('./newJist.txt', 'w', (err, file)=>{
+//     if (err) throw err;
+//     console.log('Opened!');
+// })
 
 // fs.writeFile('./news.txt', 'This is the highlight of the day with national always falling', (err)=> {
 //     if (err) throw err;
@@ -87,11 +87,35 @@ fs.open('./newJist.txt', 'w', (err, file)=>{
 
 // ******** url ****
 
-const url = require('url')
-const address = 'https://www.google.com/search?q=cook&oq=cook&gs_lcrp=EgZjaHJvbWUyDAgAEEUYORixAxiABDIKCAEQLhixAxiABDIKCAIQABixAxiABDIHCAMQABiABDIWCAQQLhiDARjHARixAxjRAxiABBiKBTIHCAUQABiABDIKCAYQABixAxiABDIKCAcQLhixAxiABDIHCAgQLhiABDIHCAkQABiPAtIBCDE0NzhqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8'
+// const url = require('url')
+// const address = 'https://www.google.com/search?q=cook&oq=cook&gs_lcrp=EgZjaHJvbWUyDAgAEEUYORixAxiABDIKCAEQLhixAxiABDIKCAIQABixAxiABDIHCAMQABiABDIWCAQQLhiDARjHARixAxjRAxiABBiKBTIHCAUQABiABDIKCAYQABixAxiABDIKCAcQLhixAxiABDIHCAgQLhiABDIHCAkQABiPAtIBCDE0NzhqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8'
 
-const addr = url.parse(address, true);
-console.log(addr.hostname);
-console.log(addr.protocol);
-console.log(addr.auth);
-console.log(addr.href);
+// const addr = url.parse(address, true);
+// console.log(addr.hostname);
+// console.log(addr.protocol);
+// console.log(addr.auth);
+// console.log(addr.href);
+
+// ******** Responding to the client ****
+
+const http = require('http')
+const url = require('url')
+const fs = require('fs')
+const { log } = require('console')
+
+http.createServer((req,res)=>{
+   let address =  url.parse(req.url,true)
+   //console.log(address);
+   let fileName = '.'+ address.pathname;
+
+    fs.readFile(fileName, (err, data) => {
+        if (err) {
+            res.writeHead(404, {'Content-Type':'text/html'})
+            return res.end('404 Not Found')
+        }
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        res.write(data);
+        return res.end();
+    });
+
+}).listen(2020)
