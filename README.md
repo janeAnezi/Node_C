@@ -273,6 +273,8 @@ http.createServer(function (req, res) {
 }).listen(8080);
 
 
+# DAY Three *******************
+
 # **** NodeJs Events ***
 Objects in Node.js can fire events, like readStream objects fires events when opening and closing a file
 

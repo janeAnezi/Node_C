@@ -36,4 +36,11 @@
 
 //  ****** Uploading Files ******
 
+const formidable = require('formidable')
+const http = require('http')
 
+http.createServer((req, res)=>{
+    res.writeHead(200, {'Content-Type': 'text/html'})
+    res.write('<form action="fileupload" method="post" enctype="multipart/form-data">')
+    res.write('<input type="file" name="filetoupload"> <br>')
+}).listen(2024)
