@@ -101,7 +101,7 @@
 const http = require('http')
 const url = require('url')
 const fs = require('fs')
-const { log } = require('console')
+// const { log } = require('console')
 
 http.createServer((req,res)=>{
    let address =  url.parse(req.url,true)

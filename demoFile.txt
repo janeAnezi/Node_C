@@ -1,0 +1,18 @@
+# **** NodeJs Events ***
+Objects in Node.js can fire events, like readStream objects fires events when opening and closing a file
+
+var fs = require('fs');
+var rs = fs.createReadStream('./demofile.txt');
+rs.on('open', function () {
+  console.log('The file is open');
+});
+
+*** Events Module ****
+Nodejs has built-in  module called Events, where you can create, fire, and listen for your own events
+
+To include the built-in events use require() method and to be able to access these properties and methods, create an EventEmitter object.
+
+var events = require('events');
+var eventEmitter = new events.EventEmitter();
+
+*** You can assign event handlers to your own events with the EventEmitter object.
