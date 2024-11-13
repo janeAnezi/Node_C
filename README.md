@@ -453,8 +453,59 @@ One of the most popular databases is MySQL.
 *** MySQL Database ***
 To be able to experiment with the code examples, you should have MySQL installed on your computer.
 
-You can download a free MySQL database at https://www.mysql.com/downloads/.
+*** SQL ***
+SQL is a standard language for storing, manipulating and retrieving data in databases.
 
+Our SQL tutorial will teach you how to use SQL in: MySQL, SQL Server, MS Access, Oracle, Sybase, Informix, Postgres, and other database systems.
 
-    
+*** You can download a free MySQL database at https://www.mysql.com/downloads/.
+
+Once you have MySQL up and running on your computer, you can access it by using Node.js.
+
+To access a MySQL database with Node.js, you need a MySQL driver. This tutorial will use the "mysql" module, downloaded from NPM.
+
+To download and install the "mysql" module, open the Command Terminal and execute the following:
+
+*** npm install mysql ***
+
+At this point, Node.js can use this module to manipulate the MySQL database:
+
+var mysql = require('mysql');
+
+# **** Create Connection ***
+Start by creating a connection to the database.
+
+Use the username and password from your MySQL database
+
+open a file, eg. demo_db_connection.js
+
+ var mysql = require('mysql');
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "yourusername",
+  password: "yourpassword"
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+});
+
+Now we can start querying the database using SQL statements.
+
+*** Query a Database ***
+To query a database, use the "query" method of the connection object.
+Use SQL statements to read from (or write to) a MySQL database.
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Result: " + result);
+  });
+});
+
+The query method takes an sql statements as a parameter and returns the result.
 
