@@ -595,6 +595,147 @@ MongoDB is flexible, schema-less, and optimized for hierarchical data structures
 
 *** Choose MySQL for consistency and relational data needs and MongoDB for scalability and flexibility with document-oriented data.
 
+# Node.js Application with MySQL
+
+First, install the mysql2 package to interact with MySQL:
+
+*** npm install mysql2
+
+Database Setup (MySQL)
+Let's assume we have a MySQL database called mydb with a users table.
+
+CREATE DATABASE mydb;
+USE mydb;
+
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  email VARCHAR(100) UNIQUE,
+  age INT
+);
+
+
+Node.js Code (MySQL)
+Here's a simple Node.js application that connects to MySQL, inserts a user, retrieves users, and updates a user’s information.
+
+
+const mysql = require('mysql2');
+
+// Create a connection to the database
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'password',
+  database: 'mydb'
+});
+
+// Connect to the database
+connection.connect(err => {
+  if (err) throw err;
+  console.log('Connected to MySQL database!');
+});
+
+// Insert a new user
+const insertUser = (name, email, age) => {
+  connection.query(
+    'INSERT INTO users (name, email, age) VALUES (?, ?, ?)',
+    [name, email, age],
+    (err, results) => {
+      if (err) throw err;
+      console.log('User inserted:', results.insertId);
+    }
+  );
+};
+
+// Get all users
+const getUsers = () => {
+  connection.query('SELECT * FROM users', (err, results) => {
+    if (err) throw err;
+    console.log('Users:', results);
+  });
+};
+
+// Update a user’s age
+const updateUserAge = (id, age) => {
+  connection.query(
+    'UPDATE users SET age = ? WHERE id = ?',
+    [age, id],
+    (err, results) => {
+      if (err) throw err;
+      console.log('User updated:', results.message);
+    }
+  );
+};
+
+// Example usage
+insertUser('Alice', 'alice@example.com', 30);
+getUsers();
+updateUserAge(1, 31);
+
+# Node.js Application with MongoDB
+First, install the mongodb package to interact with MongoDB:
+
+*** npm install mongodb
+
+Database Setup (MongoDB)
+We’ll have to create a users collection in MongoDB where each document will represent a user. MongoDB doesn’t require a predefined schema, so we can start adding data directly.
+
+Node.js Code (MongoDB)
+Here's a simple Node.js application that connects to MongoDB, inserts a user document, retrieves users, and updates a user’s age.
+
+js
+
+const { MongoClient } = require('mongodb');
+
+// MongoDB connection URL and database name
+const url = 'mongodb://localhost:27017';
+const dbName = 'mydb';
+
+// Connect to MongoDB
+MongoClient.connect(url, { useUnifiedTopology: true }, (err, client) => {
+  if (err) throw err;
+  console.log('Connected to MongoDB database!');
+  
+  const db = client.db(dbName);
+  const usersCollection = db.collection('users');
+
+  // Insert a new user
+  const insertUser = (user) => {
+    usersCollection.insertOne(user, (err, result) => {
+      if (err) throw err;
+      console.log('User inserted with ID:', result.insertedId);
+    });
+  };
+
+  // Get all users
+  const getUsers = () => {
+    usersCollection.find({}).toArray((err, users) => {
+      if (err) throw err;
+      console.log('Users:', users);
+    });
+  };
+
+  // Update a user’s age
+  const updateUserAge = (name, age) => {
+    usersCollection.updateOne({ name }, { $set: { age } }, (err, result) => {
+      if (err) throw err;
+      console.log('User updated:', result.modifiedCount);
+    });
+  };
+
+  // Example usage
+  insertUser({ name: 'Alice', email: 'alice@example.com', age: 30 });
+  getUsers();
+  updateUserAge('Alice', 31);
+
+  // Close the database connection
+  client.close();
+});
+
+
+MySQL: Uses SQL queries to manage structured data in tables.
+MongoDB: Uses BSON documents, offering flexibility and scalability.
+
 
 
 
