@@ -456,8 +456,6 @@ To be able to experiment with the code examples, you should have MySQL installed
 *** SQL ***
 SQL is a standard language for storing, manipulating and retrieving data in databases.
 
-Our SQL tutorial will teach you how to use SQL in: MySQL, SQL Server, MS Access, Oracle, Sybase, Informix, Postgres, and other database systems.
-
 *** You can download a free MySQL database at https://www.mysql.com/downloads/.
 
 Once you have MySQL up and running on your computer, you can access it by using Node.js.
@@ -508,4 +506,97 @@ con.connect(function(err) {
 });
 
 The query method takes an sql statements as a parameter and returns the result.
+
+***  MySQL ***
+MySQL is a relational database management system (RDBMS) that stores data in structured tables with rows and columns. It uses SQL (Structured Query Language) for querying and managing data, making it suitable for applications that require complex transactions and data consistency.
+
+*** Core Concepts ***
+Tables: Data is stored in tables with rows and columns.
+Schema: Each table follows a predefined schema, specifying the data types and constraints.
+Joins: Supports joins between tables, useful for relational data.
+Example
+Creating a Table
+
+sql
+
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  email VARCHAR(100) UNIQUE,
+  age INT
+);
+Inserting Data
+
+sql
+
+INSERT INTO users (name, email, age) VALUES ('Alice', 'alice@example.com', 30);
+Querying Data
+
+sql
+
+SELECT * FROM users WHERE age > 25;
+Updating Data
+
+sql
+
+UPDATE users SET age = 31 WHERE name = 'Alice';
+Joining Tables
+
+sql
+
+SELECT orders.id, users.name, orders.total
+FROM orders
+JOIN users ON orders.user_id = users.id;
+
+
+
+*** MongoDB ***
+MongoDB is a NoSQL, document-oriented database that stores data in JSON-like BSON (Binary JSON) documents. It’s schema-less, which makes it flexible for handling large datasets with evolving structures, and it's well-suited for applications requiring fast iteration and scalability.
+
+Core Concepts
+Collections: Equivalent to tables in RDBMS but without a fixed schema.
+Documents: Data is stored as documents in BSON format, similar to JSON.
+Embedded Documents: Supports nesting of documents within documents, reducing the need for joins.
+Example
+Creating a Document
+
+js
+
+db.users.insertOne({
+  name: "Alice",
+  email: "alice@example.com",
+  age: 30,
+  address: { city: "New York", zip: "10001" }
+});
+Querying Data
+
+js
+
+db.users.find({ age: { $gt: 25 } });
+Updating Data
+
+js
+
+db.users.updateOne(
+  { name: "Alice" },
+  { $set: { age: 31 } }
+);
+Aggregating Data
+
+js
+
+db.orders.aggregate([
+  { $match: { status: "completed" } },
+  { $group: { _id: "$user_id", totalSpent: { $sum: "$amount" } } }
+]);
+
+MySQL is ideal for structured, transactional data with predefined schemas and complex joins.
+MongoDB is flexible, schema-less, and optimized for hierarchical data structures and rapid application development.
+
+*** Choose MySQL for consistency and relational data needs and MongoDB for scalability and flexibility with document-oriented data.
+
+
+
+
+
 
